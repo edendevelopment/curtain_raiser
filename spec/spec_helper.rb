@@ -3,7 +3,6 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'curtain_raiser'
 require 'rspec/core'
 require 'rspec/mocks'
-require 'rack/test'
 
 Rspec.configure do |config|
   require 'rspec/expectations'

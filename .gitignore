@@ -19,3 +19,4 @@ rdoc
 pkg
 
 ## PROJECT::SPECIFIC
+run_test.sh

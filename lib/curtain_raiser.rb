@@ -1,12 +1,11 @@
 class CurtainRaiser
-  def initialize(application, login_response, &authorisation)
-    @login_response = login_response
-    @authorisation = authorisation
+  def initialize(application, curtain)
+    @curtain = curtain
     @application = application
   end
 
   def call(environment)
-    @authorisation.call(environment) ? @application.call(environment) : @login_response
+    @curtain.raise?(environment) ? @application.call(environment) : @curtain.call(environment)
   end
 
 end
