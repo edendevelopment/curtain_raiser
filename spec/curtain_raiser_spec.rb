@@ -15,9 +15,6 @@ describe "CurtainRaiser" do
       login_response = 'hiya'
       curtain_raiser(nil, login_response, false).call(nil).should == login_response
     end
-
-    context 'while requesting authorisation to continue to the desired app' do
-    end
   end
 
   context 'when request is authorised' do

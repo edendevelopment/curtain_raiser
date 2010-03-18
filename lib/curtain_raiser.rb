@@ -1,3 +1,5 @@
+require 'curtain_raiser/curtains'
+
 class CurtainRaiser
   def initialize(application, curtain)
     @curtain = curtain
