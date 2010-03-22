@@ -1,9 +1,9 @@
 require 'curtain_raiser/curtains'
 
 class CurtainRaiser
-  def initialize(application, curtain)
-    @curtain = curtain
+  def initialize(application, curtain, *args, &block)
     @application = application
+    @curtain = curtain.new(@application, *args, &block)
   end
 
   def call(environment)

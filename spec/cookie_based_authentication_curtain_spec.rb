@@ -25,4 +25,10 @@ describe 'Curtain' do
     end
   end
 
+  context 'sets the cookie' do
+    it 'if valid user name and password params are present' do
+
+    end
+  end
+
 end

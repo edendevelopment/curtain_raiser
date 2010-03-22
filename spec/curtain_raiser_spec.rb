@@ -2,8 +2,41 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "CurtainRaiser" do
 
+  context 'creation' do
+    class CurtainDouble
+      attr_reader :app, :block, :args
+
+      def initialize(app, *args, &block)
+        @app = app
+        @block = block
+        @args = args
+      end
+    end
+
+    before(:each) do
+      @app = mock(:app)
+      @raiser = CurtainRaiser.new(@app, CurtainDouble, 1, 2, 3) { true }
+    end
+
+    def curtain
+      @raiser.instance_variable_get('@curtain')
+    end
+
+    it "creates the curtain with the app" do
+      curtain.app.should == @app
+    end
+
+    it "creates the curtain with the block" do
+      curtain.block.call.should be_true
+    end
+
+    it "creates the curtain with the args" do
+      curtain.args.should == [1,2,3]
+    end
+  end
+
   def curtain_raiser(app, login_response, should_raise)
-    raiser = CurtainRaiser.new(app, mock(:curtain, :call => login_response, :raise? => should_raise))
+    raiser = CurtainRaiser.new(app, mock(:curtain, :null_object => true, :call => login_response, :raise? => should_raise))
   end
 
   context 'when the request is not authorised' do
